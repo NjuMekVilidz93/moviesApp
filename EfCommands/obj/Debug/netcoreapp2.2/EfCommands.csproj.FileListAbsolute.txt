@@ -1,0 +1,16 @@
+C:\Users\lenovo\source\repos\MoviesApp\EfCommands\bin\Debug\netcoreapp2.2\EfCommands.deps.json
+C:\Users\lenovo\source\repos\MoviesApp\EfCommands\bin\Debug\netcoreapp2.2\EfCommands.dll
+C:\Users\lenovo\source\repos\MoviesApp\EfCommands\bin\Debug\netcoreapp2.2\EfCommands.pdb
+C:\Users\lenovo\source\repos\MoviesApp\EfCommands\bin\Debug\netcoreapp2.2\Application.dll
+C:\Users\lenovo\source\repos\MoviesApp\EfCommands\bin\Debug\netcoreapp2.2\Domain.dll
+C:\Users\lenovo\source\repos\MoviesApp\EfCommands\bin\Debug\netcoreapp2.2\EfDataAccess.dll
+C:\Users\lenovo\source\repos\MoviesApp\EfCommands\bin\Debug\netcoreapp2.2\Application.pdb
+C:\Users\lenovo\source\repos\MoviesApp\EfCommands\bin\Debug\netcoreapp2.2\EfDataAccess.pdb
+C:\Users\lenovo\source\repos\MoviesApp\EfCommands\bin\Debug\netcoreapp2.2\Domain.pdb
+C:\Users\lenovo\source\repos\MoviesApp\EfCommands\obj\Debug\netcoreapp2.2\EfCommands.csprojAssemblyReference.cache
+C:\Users\lenovo\source\repos\MoviesApp\EfCommands\obj\Debug\netcoreapp2.2\EfCommands.csproj.CoreCompileInputs.cache
+C:\Users\lenovo\source\repos\MoviesApp\EfCommands\obj\Debug\netcoreapp2.2\EfCommands.AssemblyInfoInputs.cache
+C:\Users\lenovo\source\repos\MoviesApp\EfCommands\obj\Debug\netcoreapp2.2\EfCommands.AssemblyInfo.cs
+C:\Users\lenovo\source\repos\MoviesApp\EfCommands\obj\Debug\netcoreapp2.2\EfCommands.csproj.CopyComplete
+C:\Users\lenovo\source\repos\MoviesApp\EfCommands\obj\Debug\netcoreapp2.2\EfCommands.dll
+C:\Users\lenovo\source\repos\MoviesApp\EfCommands\obj\Debug\netcoreapp2.2\EfCommands.pdb

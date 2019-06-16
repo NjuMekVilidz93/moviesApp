@@ -1,0 +1,62 @@
+﻿@model WebApp.Models.CatalogViewModel
+@{
+    ViewData["Title"] = "Catalog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="category.html">Category</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Sub-category</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-3">
+            <div class="card bg-light mb-3">
+                <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Genres</div>
+                <ul class="list-group category_block">
+                    @foreach (var genre in Model.Genres)
+                    {
+                        <li class="list-group-item"><a asp-controller="Movies" asp-action="Catalog" asp-route-genreId="@genre.Id">@genre.Name</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="col">
+            <div class="row">
+                @foreach (var movie in Model.Movies.Data)
+                {
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card">
+                            
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="product.html" title="View Product">@movie.Title</a></h4>
+                                <p class="card-text">@movie.Description</p>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="card-text">@movie.AvailableCount</p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="card-text">@movie.Count</p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="card-text">@movie.Director</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
