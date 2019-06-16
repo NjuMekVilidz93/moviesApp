@@ -11,7 +11,7 @@
             <remarks>
             Sample request:
              
-             GET api/directors
+             GET /directors
              {
                  "name" = "Tarantino"
              }
@@ -25,10 +25,8 @@
             <remarks>
             Sample request:
              
-             GET api/directors/2
-             
+             GET /directors/2
             </remarks>
-            <param name="id"></param>  
         </member>
         <member name="M:Api.Controllers.DirectorsController.Post(Application.DTO.DirectorDto)">
             <summary>
@@ -37,8 +35,9 @@
             <remarks>
             Sample request:
              
-             POST api/directors
+             POST /directors
              {
+                  "id" = "3"
                  "name" = "Fredy"
              }
             
@@ -53,14 +52,13 @@
              <remarks>
              Sample request:
               
-              PUT api/directors/3
+              PUT /directors/3
               {
             
                   "name" = "Tarantino"
               }
              
              </remarks>
-             <param name="id"></param>  
         </member>
         <member name="M:Api.Controllers.DirectorsController.Delete(System.Int32)">
             <summary>
@@ -69,10 +67,12 @@
             <remarks>
             Sample request:
              
-             DELETE api/directors/2
+             DELETE /directors/2
+             {
+                 "id" = 2
+             }
             
             </remarks>
-            <param name="id"></param>  
         </member>
         <member name="M:Api.Controllers.MoviesController.Get(Application.Searches.MovieSearch)">
             <summary>
@@ -81,7 +81,7 @@
             <remarks>
             Sample request:
              
-             GET api/movies
+             GET /movies
              {
                  "movieName" = "Godfather",
                  "movieYear" = 1997,
@@ -100,9 +100,14 @@
             <remarks>
             Sample request:
              
-             GET api/movies/3
+             GET /movies/3
              {
-                 
+                 "movieName" = "Godfather",
+                 "movieYear" = 1997,
+                 "isAvailable" = true,
+                 "genreId" = 3,
+                 "perPage" = 4,
+                 "pageNumber" = 1
              }
             
             </remarks>
@@ -115,17 +120,15 @@
             <remarks>
             Sample request:
              
-             POST api/movies
+             POST /movies
              {
                  "title" = "Godfather2",
                  "description" = 1997,
                  "availableCount" = true,
                  "count" = 3,
-                 "year" = 2012,
+                 "year" = 4,
                  "directorId" = 1,
-                 "selectedGenres" : [
-                        1,2 
-                ]
+                 "createdAt" = DateTime.Now
              }
             
             </remarks>
@@ -134,38 +137,39 @@
         </member>
         <member name="M:Api.Controllers.MoviesController.Put(System.Int32,Application.DTO.MovieDto)">
             <summary>
-            Update movie with provided id
+            Update movie
             </summary>
             <remarks>
             Sample request:
              
-             PUT api/movies/3
+             PUT /movies/3
              {
                  "title" = "Godfather2",
                  "description" = 1997,
                  "availableCount" = true,
                  "count" = 3,
-                 "year" = 2012,
+                 "year" = 4,
                  "directorId" = 1,
-                 "selectedGenres" : [
-                        1,2 
-                ]
+                 "createdAt" = DateTime.Now
              }
             
             </remarks>
             <param name="id"></param>
+            <param name="dto"></param>  
         </member>
         <member name="M:Api.Controllers.MoviesController.Delete(System.Int32)">
             <summary>
-            Delete movie with provided id
+            Delete movie
             </summary>
             <remarks>
             Sample request:
              
-             DELETE api/movies/4
+             DELETE /movies/4
+             {
+                 "id" = 2
+             }
             
             </remarks>
-            <param name="id"></param>  
         </member>
         <member name="M:Api.Controllers.ReservationsController.Get(Application.Searches.ReservationSearch)">
             <summary>
@@ -174,9 +178,8 @@
             <remarks>
             Sample request:
              
-             GET api/reservations
+             GET /reservations
              {
-                 
                  "username" = "vule"
              }
             
@@ -189,9 +192,14 @@
             <remarks>
             Sample request:
              
-             GET api/reservations/1
+             GET /reservations/1
              {
-               
+                 "movieName" = "Godfather",
+                 "movieYear" = 1997,
+                 "isAvailable" = true,
+                 "genreId" = 3,
+                 "perPage" = 4,
+                 "pageNumber" = 1
              }
             
             </remarks>
@@ -204,13 +212,11 @@
             <remarks>
             Sample request:
              
-             POST api/reservations
+             POST /reservations
              {
-               "movieReservations" : [
-                       1,2
-                ],
-               "userId" : 1
-              
+               "createdAt" : "2018-04-02",
+               "userId" : 2,
+               "movieId" : 2
              }
             
             </remarks>
@@ -219,35 +225,34 @@
         </member>
         <member name="M:Api.Controllers.ReservationsController.Put(System.Int32,Application.DTO.ReservationDto)">
             <summary>
-            A newly created reservation
+            Update reservation
             </summary>
             <remarks>
             Sample request:
              
-             POST api/reservations/1
+             PUT /reservations/3
              {
-               "movieReservations" : [
-                       1,2
-                ],
-               "userId" : 1
-              
+                "createdAt" : "2018-04-02",
+               "userId" : 1,
+               "movieId" : 1
              }
             
             </remarks>
             <param name="id"></param>  
         </member>
         <member name="M:Api.Controllers.ReservationsController.Delete(System.Int32)">
-             <summary>
-             Delete reservation
-             </summary>
-             <remarks>
-             Sample request:
-              
-              DELETE api/reservation/2
-            
+            <summary>
+            Delete reservation
+            </summary>
+            <remarks>
+            Sample request:
              
-             </remarks>
-             <param name="id"></param>  
+             DELETE /reservation/2
+             {
+                 "id" = 2
+             }
+            
+            </remarks>
         </member>
         <member name="M:Api.Controllers.UsersController.Get(Application.Searches.UserSearch)">
             <summary>
@@ -256,7 +261,7 @@
             <remarks>
             Sample request:
              
-             GET api/users
+             GET /users
              {
                  "firstName" = "Nikola",
                  "lastName" = "Vulovic",
@@ -272,13 +277,14 @@
             <remarks>
             Sample request:
              
-             POST api/users
+             POST /users
              {
                  "firstName" = "Marko",
                  "lastName" = "Markovic",
                  "username" = "mare",
                  "password" = "markic123",
-                 "roleId" = 2
+                 "roleId" = 2,
+                 "createdAt" = DateTime.Now
              }
             
             </remarks>
@@ -292,13 +298,14 @@
             <remarks>
             Sample request:
              
-             PUT api/users/3
+             PUT /users/3
              {
                  "firstName" = "Pera",
                  "lastName" = "Peric",
                  "username" = "pera",
                  "password" = "pera123",
-                 "roleId" = 1
+                 "roleId" = 1,
+                 "createdAt" = DateTime.Now
              }
             
             </remarks>
@@ -311,10 +318,12 @@
             <remarks>
             Sample request:
              
-             DELETE api/users/4
+             DELETE /users/4
+             {
+                 "id" = 4
+             }
             
             </remarks>
-            <param name="id"></param>  
         </member>
     </members>
 </doc>

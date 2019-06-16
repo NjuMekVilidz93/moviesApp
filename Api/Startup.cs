@@ -63,7 +63,7 @@ namespace Api
 
             //services.AddTransient<IHttpContextAccessor, IHttpContextAccessor>();
 
-            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             var section = Configuration.GetSection("Email");
 
@@ -79,35 +79,35 @@ namespace Api
                 c.IncludeXmlComments(xmlPath);
             });
 
-            var key = Configuration.GetSection("Encryption")["key"];
+            //var key = Configuration.GetSection("Encryption")["key"];
 
-            var enc = new Encryption(key);
+            //var enc = new Encryption(key);
 
-            services.AddSingleton(enc);
+            //services.AddSingleton(enc);
 
-            services.AddTransient(s =>
-            {
-                var http = s.GetRequiredService<IHttpContextAccessor>();
-                var value = http.HttpContext.Request.Headers["Authorization"].ToString();
-                var encryption = s.GetRequiredService<Encryption>();
+            //services.AddTransient(s =>
+            //{
+            //    var http = s.GetRequiredService<IHttpContextAccessor>();
+            //    var value = http.HttpContext.Request.Headers["Authorization"].ToString();
+            //    var encryption = s.GetRequiredService<Encryption>();
 
-                try
-                {
-                    var decodedString = encryption.DecryptString(value);
-                    decodedString = decodedString.Replace("\f", "");
-                    var user = JsonConvert.DeserializeObject<LoggedUser>(decodedString);
-                    user.IsLogged = true;
-                    return user;
-                }
-                catch (Exception)
-                {
+            //    try
+            //    {
+            //        var decodedString = encryption.DecryptString(value);
+            //        decodedString = decodedString.Replace("\f", "");
+            //        var user = JsonConvert.DeserializeObject<LoggedUser>(decodedString);
+            //        user.IsLogged = true;
+            //        return user;
+            //    }
+            //    catch (Exception)
+            //    {
 
-                    return new LoggedUser
-                    {
-                        IsLogged = false
-                    };                }
-            }
-            );
+            //        return new LoggedUser
+            //        {
+            //            IsLogged = false
+            //        };                }
+            //}
+            //);
 
             
         }

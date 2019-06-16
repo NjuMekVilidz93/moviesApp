@@ -48,3 +48,4 @@ C:\Users\lenovo\source\repos\MoviesApp\WebApp\obj\Debug\netcoreapp2.2\Razor\View
 C:\Users\lenovo\source\repos\MoviesApp\WebApp\obj\Debug\netcoreapp2.2\Razor\Views\Reservations\Details.g.cshtml.cs
 C:\Users\lenovo\source\repos\MoviesApp\WebApp\obj\Debug\netcoreapp2.2\Razor\Views\Reservations\Create.g.cshtml.cs
 C:\Users\lenovo\source\repos\MoviesApp\WebApp\obj\Debug\netcoreapp2.2\Razor\Views\Reservations\Edit.g.cshtml.cs
+C:\Users\lenovo\source\repos\MoviesApp\WebApp\bin\Debug\netcoreapp2.2\Api.xml

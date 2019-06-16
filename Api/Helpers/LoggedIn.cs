@@ -9,42 +9,42 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Api.Helpers
 {
-    public class LoggedIn : Attribute, IResourceFilter
-    {
-        private readonly string _role;
+    //public class LoggedIn : Attribute, IResourceFilter
+    //{
+    //    private readonly string _role;
 
-        public LoggedIn(string role)
-        {
-            _role = role;
-        }
+    //    public LoggedIn(string role)
+    //    {
+    //        _role = role;
+    //    }
 
-        public LoggedIn()
-        {
-        }
+    //    public LoggedIn()
+    //    {
+    //    }
 
-        public void OnResourceExecuted(ResourceExecutedContext context)
-        {
+    //    public void OnResourceExecuted(ResourceExecutedContext context)
+    //    {
             
-        }
+    //    }
 
-        public void OnResourceExecuting(ResourceExecutingContext context)
-        {
-            var user = context.HttpContext.RequestServices.GetService<LoggedUser>();
+    //    public void OnResourceExecuting(ResourceExecutingContext context)
+    //    {
+    //        var user = context.HttpContext.RequestServices.GetService<LoggedUser>();
 
-            if (!user.IsLogged)
-            {
-                context.Result = new UnauthorizedResult();
-            }
-            else
-            {
-                if (_role != null)
-                {
-                    if (user.Role != null)
-                    {
-                        context.Result = new UnauthorizedResult();
-                    }
-                }
-            }
-        }
-    }
+    //        if (!user.IsLogged)
+    //        {
+    //            context.Result = new UnauthorizedResult();
+    //        }
+    //        else
+    //        {
+    //            if (_role != null)
+    //            {
+    //                if (user.Role != null)
+    //                {
+    //                    context.Result = new UnauthorizedResult();
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 }

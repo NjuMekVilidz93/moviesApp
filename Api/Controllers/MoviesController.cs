@@ -22,17 +22,18 @@ namespace Api.Controllers
         private readonly IAddMovieCommand _addMovieCommand;
         private readonly IDeleteMovieCommand _deleteMovieCommand;
         private readonly IUpdateMovieCommand _updateCommand;
-        private readonly LoggedUser _user;
 
-        public MoviesController(IGetMoviesCommand command, IGetMovieCommand oneCommand, IAddMovieCommand addMovieCommand, IDeleteMovieCommand deleteMovieCommand, IUpdateMovieCommand updateCommand, LoggedUser user)
+        public MoviesController(IGetMoviesCommand command, IGetMovieCommand oneCommand, IAddMovieCommand addMovieCommand, IDeleteMovieCommand deleteMovieCommand, IUpdateMovieCommand updateCommand)
         {
             _command = command;
             _oneCommand = oneCommand;
             _addMovieCommand = addMovieCommand;
             _deleteMovieCommand = deleteMovieCommand;
             _updateCommand = updateCommand;
-            _user = user;
         }
+
+
+
 
 
         /// <summary>
@@ -41,7 +42,7 @@ namespace Api.Controllers
         /// <remarks>
         /// Sample request:
         ///  
-        ///  GET /movies
+        ///  GET api/movies
         ///  {
         ///      "movieName" = "Godfather",
         ///      "movieYear" = 1997,
@@ -53,9 +54,9 @@ namespace Api.Controllers
         /// 
         /// </remarks>
         // GET: api/Movies
-        [LoggedIn("Admin")]
+
         [HttpGet]
-        public ActionResult<MovieDto> Get([FromQuery]MovieSearch search)
+        public ActionResult<IEnumerable<MovieDto>> Get([FromQuery]MovieSearch search)
         {
             var result = _command.Execute(search);
             return Ok(result);
@@ -66,20 +67,15 @@ namespace Api.Controllers
         /// <remarks>
         /// Sample request:
         ///  
-        ///  GET /movies/3
+        ///  GET api/movies/3
         ///  {
-        ///      "movieName" = "Godfather",
-        ///      "movieYear" = 1997,
-        ///      "isAvailable" = true,
-        ///      "genreId" = 3,
-        ///      "perPage" = 4,
-        ///      "pageNumber" = 1
+        ///      
         ///  }
         /// 
         /// </remarks>
         /// <param name="id"></param>  
         // GET: api/Movies/5
-        [LoggedIn]
+     
         [HttpGet("{id}")]
         public ActionResult<MovieDto> Get(int id)
         {
@@ -99,25 +95,25 @@ namespace Api.Controllers
         /// <remarks>
         /// Sample request:
         ///  
-        ///  POST /movies
+        ///  POST api/movies
         ///  {
         ///      "title" = "Godfather2",
         ///      "description" = 1997,
         ///      "availableCount" = true,
         ///      "count" = 3,
-        ///      "year" = 4,
+        ///      "year" = 2012,
         ///      "directorId" = 1,
-        ///      "createdAt" = DateTime.Now
+        ///      "selectedGenres" : [
+        ///             1,2 
+        ///     ]
         ///  }
         /// 
         /// </remarks>
         /// <response code="201">Returns the newly created item</response>
         /// <response code="400">If the item is null</response> 
         // POST: api/Movies
-        [ProducesResponseType(201)]
-        [ProducesResponseType(400)]
         [HttpPost]
-        public ActionResult<MovieDto> Post([FromBody] MovieDto dto)
+        public ActionResult Post([FromBody] MovieDto dto)
         {
             try
             {
@@ -130,28 +126,30 @@ namespace Api.Controllers
             }
         }
         /// <summary>
-        /// Update movie
+        /// Update movie with provided id
         /// </summary>
         /// <remarks>
         /// Sample request:
         ///  
-        ///  PUT /movies/3
+        ///  PUT api/movies/3
         ///  {
         ///      "title" = "Godfather2",
         ///      "description" = 1997,
         ///      "availableCount" = true,
         ///      "count" = 3,
-        ///      "year" = 4,
+        ///      "year" = 2012,
         ///      "directorId" = 1,
-        ///      "createdAt" = DateTime.Now
+        ///      "selectedGenres" : [
+        ///             1,2 
+        ///     ]
         ///  }
         /// 
         /// </remarks>
         /// <param name="id"></param>
-        /// <param name="dto"></param>  
+        /// <param name="dto"></param>
         // PUT: api/Movies/5
         [HttpPut("{id}")]
-        public ActionResult<MovieDto> Put(int id, [FromBody] MovieDto dto)
+        public ActionResult Put(int id, [FromBody] MovieDto dto)
         {
             dto.Id = id;
 
@@ -166,20 +164,18 @@ namespace Api.Controllers
             }
         }
         /// <summary>
-        /// Delete movie
+        /// Delete movie with provided id
         /// </summary>
         /// <remarks>
         /// Sample request:
         ///  
-        ///  DELETE /movies/4
-        ///  {
-        ///      "id" = 2
-        ///  }
+        ///  DELETE api/movies/4
         /// 
         /// </remarks>
+        /// <param name="id"></param>  
         // DELETE: api/movies/5
         [HttpDelete("{id}")]
-        public ActionResult<int> Delete(int id)
+        public ActionResult Delete(int id)
         {
          
             try

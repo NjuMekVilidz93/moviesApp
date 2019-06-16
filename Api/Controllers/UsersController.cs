@@ -33,7 +33,7 @@ namespace Api.Controllers
         /// <remarks>
         /// Sample request:
         ///  
-        ///  GET /users
+        ///  GET api/users
         ///  {
         ///      "firstName" = "Nikola",
         ///      "lastName" = "Vulovic",
@@ -43,7 +43,7 @@ namespace Api.Controllers
         /// </remarks>
         // GET: api/Users
         [HttpGet]
-        public ActionResult<UserDto> Get([FromQuery] UserSearch search)
+        public ActionResult<IEnumerable<UserDto>> Get([FromQuery] UserSearch search)
         {
             try
             {
@@ -69,14 +69,13 @@ namespace Api.Controllers
         /// <remarks>
         /// Sample request:
         ///  
-        ///  POST /users
+        ///  POST api/users
         ///  {
         ///      "firstName" = "Marko",
         ///      "lastName" = "Markovic",
         ///      "username" = "mare",
         ///      "password" = "markic123",
-        ///      "roleId" = 2,
-        ///      "createdAt" = DateTime.Now
+        ///      "roleId" = 2
         ///  }
         /// 
         /// </remarks>
@@ -84,7 +83,7 @@ namespace Api.Controllers
         /// <response code="400">If the item is null</response> 
         // POST: api/Users
         [HttpPost]
-        public ActionResult<UserDto> Post([FromBody] UserDto dto)
+        public ActionResult Post([FromBody] UserDto dto)
         {
             try
             {
@@ -102,21 +101,21 @@ namespace Api.Controllers
         /// <remarks>
         /// Sample request:
         ///  
-        ///  PUT /users/3
+        ///  PUT api/users/3
         ///  {
         ///      "firstName" = "Pera",
         ///      "lastName" = "Peric",
         ///      "username" = "pera",
         ///      "password" = "pera123",
-        ///      "roleId" = 1,
-        ///      "createdAt" = DateTime.Now
+        ///      "roleId" = 1
         ///  }
         /// 
         /// </remarks>
-        /// <param name="id"></param>  
+        /// <param name="id"></param>
+        /// <param name="dto"></param>  
         // PUT: api/Users/5
         [HttpPut("{id}")]
-        public ActionResult<UserDto> Put(int id, [FromBody] UserDto dto)
+        public ActionResult Put(int id, [FromBody] UserDto dto)
         {
             dto.Id = id;
 
@@ -136,15 +135,13 @@ namespace Api.Controllers
         /// <remarks>
         /// Sample request:
         ///  
-        ///  DELETE /users/4
-        ///  {
-        ///      "id" = 4
-        ///  }
+        ///  DELETE api/users/4
         /// 
         /// </remarks>
+        /// <param name="id"></param>  
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public ActionResult<int> Delete(int id)
+        public ActionResult Delete(int id)
         {
             try
             {

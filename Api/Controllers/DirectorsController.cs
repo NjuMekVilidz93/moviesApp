@@ -36,7 +36,7 @@ namespace Api.Controllers
         /// <remarks>
         /// Sample request:
         ///  
-        ///  GET /directors
+        ///  GET api/directors
         ///  {
         ///      "name" = "Tarantino"
         ///  }
@@ -55,8 +55,10 @@ namespace Api.Controllers
         /// <remarks>
         /// Sample request:
         ///  
-        ///  GET /directors/2
+        ///  GET api/directors/2
+        ///  
         /// </remarks>
+        /// <param name="id"></param>  
         // GET: api/Directors/5
         [HttpGet("{id}")]
         public ActionResult<DirectorDto> Get(int id)
@@ -77,9 +79,8 @@ namespace Api.Controllers
         /// <remarks>
         /// Sample request:
         ///  
-        ///  POST /directors
+        ///  POST api/directors
         ///  {
-        ///       "id" = "3"
         ///      "name" = "Fredy"
         ///  }
         /// 
@@ -88,7 +89,7 @@ namespace Api.Controllers
         /// <response code="400">If the item is null</response> 
         // POST: api/Directors
         [HttpPost]
-        public ActionResult<DirectorDto> Post([FromBody] DirectorDto dto)
+        public ActionResult Post([FromBody] DirectorDto dto)
         {
             try
             {
@@ -107,16 +108,18 @@ namespace Api.Controllers
         /// <remarks>
         /// Sample request:
         ///  
-        ///  PUT /directors/3
+        ///  PUT api/directors/3
         ///  {
         ///
         ///      "name" = "Tarantino"
         ///  }
         /// 
         /// </remarks>
+        /// <param name="id"></param>
+        /// <param name="dto"></param>  
         // PUT: api/Directors/5
         [HttpPut("{id}")]
-        public ActionResult<DirectorDto> Put(int id, [FromBody] DirectorDto dto)
+        public ActionResult Put(int id, [FromBody] DirectorDto dto)
         {
             dto.Id = id;
             try
@@ -135,15 +138,13 @@ namespace Api.Controllers
         /// <remarks>
         /// Sample request:
         ///  
-        ///  DELETE /directors/2
-        ///  {
-        ///      "id" = 2
-        ///  }
+        ///  DELETE api/directors/2
         /// 
         /// </remarks>
+        /// <param name="id"></param>  
         // DELETE: api/Directors/5
         [HttpDelete("{id}")]
-        public ActionResult<int> Delete(int id)
+        public ActionResult Delete(int id)
         {
             try
             {

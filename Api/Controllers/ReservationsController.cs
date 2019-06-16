@@ -36,15 +36,16 @@ namespace Api.Controllers
         /// <remarks>
         /// Sample request:
         ///  
-        ///  GET /reservations
+        ///  GET api/reservations
         ///  {
+        ///      
         ///      "username" = "vule"
         ///  }
         /// 
         /// </remarks>
         // GET: api/Reservations
         [HttpGet]
-        public ActionResult<ReservationDto> Get([FromQuery]ReservationSearch search)
+        public ActionResult<IEnumerable<ReservationDto>> Get([FromQuery]ReservationSearch search)
         {
             try
             {
@@ -62,14 +63,9 @@ namespace Api.Controllers
         /// <remarks>
         /// Sample request:
         ///  
-        ///  GET /reservations/1
+        ///  GET api/reservations/1
         ///  {
-        ///      "movieName" = "Godfather",
-        ///      "movieYear" = 1997,
-        ///      "isAvailable" = true,
-        ///      "genreId" = 3,
-        ///      "perPage" = 4,
-        ///      "pageNumber" = 1
+        ///    
         ///  }
         /// 
         /// </remarks>
@@ -95,11 +91,13 @@ namespace Api.Controllers
         /// <remarks>
         /// Sample request:
         ///  
-        ///  POST /reservations
+        ///  POST api/reservations
         ///  {
-        ///    "createdAt" : "2018-04-02",
-        ///    "userId" : 2,
-        ///    "movieId" : 2
+        ///    "movieReservations" : [
+        ///            1,2
+        ///     ],
+        ///    "userId" : 1
+        ///   
         ///  }
         /// 
         /// </remarks>
@@ -107,7 +105,7 @@ namespace Api.Controllers
         /// <response code="400">If the item is null</response> 
         // POST: api/Reservations
         [HttpPost]
-        public ActionResult<ReservationDto> Post([FromBody] ReservationDto dto)
+        public ActionResult Post([FromBody] ReservationDto dto)
         {
             try
             {
@@ -122,23 +120,26 @@ namespace Api.Controllers
             }
         }
         /// <summary>
-        /// Update reservation
+        /// A newly created reservation
         /// </summary>
         /// <remarks>
         /// Sample request:
         ///  
-        ///  PUT /reservations/3
+        ///  POST api/reservations/1
         ///  {
-        ///     "createdAt" : "2018-04-02",
-        ///    "userId" : 1,
-        ///    "movieId" : 1
+        ///    "movieReservations" : [
+        ///            1,2
+        ///     ],
+        ///    "userId" : 1
+        ///   
         ///  }
         /// 
         /// </remarks>
-        /// <param name="id"></param>  
+        /// <param name="id"></param>
+        /// <param name="dto"></param>  
         // PUT: api/Reservations/5
         [HttpPut("{id}")]
-        public ActionResult<ReservationDto> Put(int id, [FromBody] ReservationDto dto)
+        public ActionResult Put(int id, [FromBody] ReservationDto dto)
         {
             try
             {
@@ -157,15 +158,14 @@ namespace Api.Controllers
         /// <remarks>
         /// Sample request:
         ///  
-        ///  DELETE /reservation/2
-        ///  {
-        ///      "id" = 2
-        ///  }
+        ///  DELETE api/reservation/2
+        ///
         /// 
         /// </remarks>
+        /// <param name="id"></param>  
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public ActionResult<int> Delete(int id)
+        public ActionResult Delete(int id)
         {
             try
             {
